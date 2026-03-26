@@ -32,9 +32,14 @@ def api_root(request):
 router = DefaultRouter()
 
 urlpatterns = [
+    path('', api_root, name='root'),
     path('admin/', admin.site.urls),
     path('api/', api_root, name='api-root'),
     path('api/', include(router.urls)),
+    path('api/users/', include('users.urls')),
+    path('api/teams/', include('teams.urls')),
+    path('api/activities/', include('activities.urls')),
+    path('api/workouts/', include('workouts.urls')),
     path('api-auth/', include('rest_framework.urls')),
     path('auth/', include('dj_rest_auth.urls')),
 ]

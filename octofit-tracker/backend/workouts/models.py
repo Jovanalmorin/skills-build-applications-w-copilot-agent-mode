@@ -1,3 +1,11 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-# Create your models here.
+class Workout(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	date = models.DateField()
+	exercises = models.JSONField()
+	notes = models.TextField(blank=True)
+
+	def __str__(self):
+		return f"{self.user.username} - {self.date}"
